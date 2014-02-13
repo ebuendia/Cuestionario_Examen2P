@@ -1,6 +1,91 @@
-\documentclass[../main.tex]{subfiles}
+\documentclass[12pt,oneside]{article}
+\usepackage{geometry} % See geometry.pdf to learn the layout options. There are lots.
+\usepackage{listings}	% Permite utilizar lenguajes de programacion dentro de latex
+\geometry{a4paper} % ... or a4paper or a5paper or ...
+%\geometry{landscape} % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx} % Use pdf, png, jpg, or epsß with pdflatex; use eps in DVI mode
+                                                                % TeX will automatically convert eps --> pdf in pdflatex
+\usepackage{amssymb}
+
+\usepackage[spanish]{babel} % Permite que partes automáticas del documento aparezcan en castellano.
+\usepackage[utf8]{inputenc} % Permite escribir tildes y otros caracteres directamente en el .tex
+\usepackage[T1]{fontenc} % Asegura que el documento resultante use caracteres de una fuente apropiada.
+
+\usepackage{hyperref} % Permite poner urls y links dentro del documento
+\usepackage{listings}
+
+\title{Ejercicios Propuestos - Concepts of Programming Languages}
+\author{}
+
+%\date{} % Activate to display a given date or no date
+
 \begin{document}
+\maketitle
+
+\section{Cap\'itulo 9: SubPrograms}
+
+\subsection{pregunta 1}
+Write a program in a language that you know to determine the ratio of the time required to pass a large array by reference and the time required to pass the same array by value. Make the array as large as possible on the machine and implementation you use. Pass the array as many times as necessary to get reasonably accurate timings of the passing operations.\\
+
+\begin{lstlisting}[frame=single] % Start your code-block
+int lista[500] = {0};
+int valor;
+referenceFunction(lista);
+valor = valueFunction(2);
+void referenceFunction(int *a){
+	for (int i=0; i<500; i++){
+		a[i]=1;
+	}
+}
+
+int valueFunction(int x){
+  x=3;
+return x;
+}
+\end{lstlisting}
+
+En este ejemplo se puede observar que el envio por valor toma mas tiempo. Ya que se toma su tiempo en realizar la funcion y esta a su vez ser asignada a la nueva variable a devolver.\\
 
 
-\clearpage
+\subsection{pregunta 2}
+Determine whether some C compiler to which you have access implements the free function.
+\begin{lstlisting}[frame=single]
+
+#include<stdio.h>
+
+	int main()
+	{
+		int *ptr_one;
+
+		ptr_one = (int *)malloc(sizeof(int));
+
+		if (ptr_one == 0)
+		{
+			printf("ERROR: Out of memory\n");
+			return 1;
+		}
+
+		*ptr_one = 25;
+		printf("%d\n", *ptr_one);
+
+		free(ptr_one);
+
+		return 0;
+	}
+\end{lstlisting}
+
+\subsection{\bf Pregunta 7}
+Write a C program that does a large number of references to elements of two-dimensioned arrays, using only subscripting. Write a second program that does the same operations but uses pointers and pointer arithmetic for the storage-mapping function to do the array references.Compare the time efficiency of the two programs. Which of the two programs is likely to be more reliable? Why?\\\
+
+\begin{lstlisting}[frame=single]
+#define L 100
+#define M 100
+int a[L][M]
+
+a[i] = *(a + i)
+\end{lstlisting}
+Con respecto a los tiempos de ejecucion, mas rapido es el primer caso, ya que la lectura de los datos es directamente a la memoria proporcionada por el registro a. Mientras que en el otro caso, se debe acceder primero a la memoria, buscar la direccion en la que se encuentra almacenado y ahi realizar la asignacion.
 \end{document}
+
+
