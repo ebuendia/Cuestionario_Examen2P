@@ -1,5 +1,69 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 
+\paragraph{ }CAPITULO 5
+\paragraph{Pregunta 5:}
+~\newline
+	Write a C function that includes the following sequence of statements:
+~\newline
+	x = 21;
+~\newline
+	int x;
+~\newline
+	x = 42;
+	
+	Run the program and explain the results. Rewrite the same code in C++
+	and Java and compare the results.
+
+%\paragraph{ }
+\begin{lstlisting}[belowcaptionskip=.5em,caption={C\'odigo en lenguaje C.}]
+	
+int main(){
+	x = 21;
+	int x;
+	x = 42;
+	
+	return 0;
+}
+\end{lstlisting}
+~\newline
+cap5.c: En la función ‘main’:\newline
+cap5.c:2:2: error: ‘x’ no se declaró aquí (primer uso en esta función)\newline
+cap5.c:2:2: nota: cada identificador sin declarar se reporta sólo una vez para cada función en el que aparece\newline
+
+%\paragraph{ }
+\begin{lstlisting}[belowcaptionskip=.5em,caption={C\'odigo en lenguaje C++.}]
+	
+int main(){
+	x = 21;
+	int x;
+	x = 42;
+	
+	return 0;
+}
+\end{lstlisting}
+~\newline
+cap5.cpp: En la función ‘int main()’:\newline
+cap5.cpp:2:2: error: ‘x’ no se declaró en este ámbito\newline
+
+%\paragraph{ }
+\begin{lstlisting}[belowcaptionskip=.5em,caption={C\'odigo en lenguaje Java.}]
+	
+public class cap5{
+	public static void main(string args[]){
+		x = 21;
+		int x;
+		x = 42;
+	}
+}
+\end{lstlisting}
+~\newline
+cap5.java:3: error: cannot find symbol x=21;
+~\newline
+  symbol:   variable x
+~\newline
+  location: class cap5
+~\newline
+1 error
 \clearpage
 \end{document}
