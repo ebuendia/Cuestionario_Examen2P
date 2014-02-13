@@ -1,5 +1,218 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
+\paragraph{ }CAPITULO 7
+\paragraph{ }PREGUNTA 1
+\paragraph{ }
+Let the function fun be defined as
+\begin{lstlisting}
+int fun(int *k) { 
+	 *k += 4;
+	  return 3 * (*k) - 1;
+ }
+//Suppose fun is used in a program as follows:
+void main() {
+	 int i = 10, j = 10, sum1, sum2;
+	sum1 = (i / 2) + fun(&i);
+	sum2 = fun(&j) + (j / 2);
+ }
+\end{lstlisting}
+
+What are the values of sum1 and sum2 a. if the operands in the expressions are evaluated left to right? b. if the operands in the expressions are evaluated right to left?
+
+Determine the values of sum1 and sum2. Explain the results. 2. Rewrite the program of Programming Exercise 1 in C++, Java, and C Sharp, run them, and compare the results. 3. Write a test program in your favorite language that determines and outputs the precedence and associativity of its arithmetic and Boolean operators.
+
+OUTPUT\\El resultado 1 de sum1 es: 46, y el de sum2 es 48\\
+Esto se da a que se evaluan las expresiones de izquierda a derecha.
+
+\paragraph{ }PREGUNTA 2
+\paragraph{ }
+Rewrite the program of Programming Exercise 1 in C++, Java, and C Sharp, run them, and compare the results.
+
+Codigo en C++
+\begin{lstlisting}[frame=single] 
+#include <iostream>
+
+int  fun(int *a); 
+int main()
+{
+    int a=10,b=10,c=10;
+    int sum1=a/2 + fun(&a);
+    int sum2=fun(&b)+ b/2;
+    
+   cout << sum1 << endl; 
+   cout << sum2 << endl; 
+   
+   return 0;
+}
+
+int fun(int *a){
+*a +=4;
+return 3 * (*a) - 1;
+}
+
+\end{lstlisting}
+OUTPUT\\ El resultado de sum1 es: 46, y el de sum2 es 48\\
+
+Codigo en Java\\
+\begin{lstlisting}[frame=single]  
+
+public class NewClass {
+    
+ public int a=10,b=10,c=10;
+    public static void main(String[] args) {
+        Program x=new Program(10);
+        Program y=new Program(10);
+        int sum1,sum2;
+        sum1=x.a/2+x.fun(x);
+        sum2=y.fun(y)+y.a/2;
+
+        System.out.print(sum1 + ";"   +sum2);
+    }
+
+}
+class Program {
+	int a;
+	public program(int a1){
+   	 a=a1;
+}    
+
+int fun(Program a){
+a.a+=4;
+return 3 * (a.a) - 1;
+}
+}
+
+\end{lstlisting}
+OUTPUT\\
+El resultado de sum1 es: 46, y el de sum2 es 48\\
+
+
+
+
+Codigo en C Sharp
+\begin{lstlisting}[frame=single]
+
+using System.IO;
+using System;
+
+class Program
+{
+    int a;
+    public Program(int var){
+        a=var;
+        
+    }
+    static void Main()
+    {
+        int a=10;
+        int b=10;
+        Program p1=new Program(a);
+        Program p2=new Program(b);
+        int sum1=p1.a/2+p1.fun(p1);
+        int sum2=p2.fun(p2)+p2.a/2;
+        
+        Console.WriteLine(sum1);
+        Console.WriteLine(sum2);
+    }
+    public int fun(Program a){
+        a.a+=4;
+        return 3*a.a-1;
+        
+    }
+}
+
+\end{lstlisting}
+OUTPUT\\
+El resultado de sum1 es: 46, y el de sum2 es 48\\
+
+
+
+\paragraph{ }PREGUNTA 3
+\paragraph{ }
+Write a test program in your favorite language that determines and outputs the precedence and associativity of its arithmetic and Boolean operators.
+
+\begin{lstlisting}[frame=single] 
+using System;
+public static void main(String[] args) {
+        
+        float a,b,c,resultado1,resultado2;
+        res1=res2=0;
+        
+        a=5;
+        b=7;
+        c=8;
+       
+        resultado1=a/b*c+b;
+       
+        if(b!=0){
+            resultado2=3*b*(c+a);
+        }
+        System.out.println("El resultado 1 es: "+resultado1);
+        System.out.println("El resultado 2 es: "+resultado2);
+        
+}
+
+\end{lstlisting}
+
+
+
+
+
+\paragraph{ }PREGUNTA 4
+\paragraph{ }
+Write a Java program that exposes Java’s rule for operand evaluation order when one of the operands is a method call. 
+
+
+\paragraph{ }PREGUNTA 5
+\paragraph{ }
+Repeat Programming Exercise 5 with C++. 
+\begin{lstlisting}[frame=single] 
+
+int fun();
+
+extern int a = 10;
+void main(){
+	
+	a = fun()+a; 
+	printf("\%d", a);
+	getch();
+}
+
+int fun() {
+	a = 20;
+	return 5;
+}
+\end{lstlisting}
+OUTPUT\\25\\
+Se actualiza la variable global a con un valor de 20 y se le suma 5.
+
+
+
+\paragraph{ }PREGUNTA 6
+\paragraph{ }
+Repeat Programming Exercise 6 with C Sharp.
+
+\begin{lstlisting}[frame=single]  
+class Program
+    {
+        static int a = 10;
+        static void Main(string[] args)
+        {
+            a = a +fun();
+            Console.WriteLine(a);
+            Console.ReadLine();
+       }
+
+        static int fun()
+        {
+            a = 20;
+            return 5;
+        }
+    }
+\end{lstlisting}
+OUTPUT\\15\\ 
+Por regla de asociatividad a recibe el valor de 10 y se le suma de la funcion fun()
+
 
 \clearpage
 \end{document}
