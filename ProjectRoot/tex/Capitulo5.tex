@@ -1,9 +1,10 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 
-\paragraph{ }CAPITULO 5
-\paragraph{Pregunta 5:}
-~\newline
+\paragraph{\textbf{CAPITULO 5}}
+\begin{itemize}
+	\item \textbf{Pregunta 5}
+\end{itemize}
 	Write a C function that includes the following sequence of statements:
 ~\newline
 	x = 21;
@@ -11,7 +12,7 @@
 	int x;
 ~\newline
 	x = 42;
-	
+~\newline
 	Run the program and explain the results. Rewrite the same code in C++
 	and Java and compare the results.
 
@@ -65,5 +66,75 @@ cap5.java:3: error: cannot find symbol x=21;
   location: class cap5
 ~\newline
 1 error
+
+\begin{itemize}
+	\item \textbf{Pregunta 6}
+\end{itemize}
+	Write test programs in C++, Java, and C\# to determine the scope of
+	a variable declared in a for statement. Specifically, the code must
+	determine whether such a variable is visible after the body of the for
+	statement.\newline
+
+\begin{lstlisting}[belowcaptionskip=.5em,caption={C\'odigo en lenguaje C++.}]
+	
+#include <iostream>
+
+using namespace std;
+
+void main(){
+    for(int i=1; i<=5; i++)
+        cout << i;
+        
+    // Intento acceder a la variable "i"
+    cout << i;
+}
+\end{lstlisting}
+~\newline
+Aqui se intenta imprimir el valor de la variable i, pero nos da un error de compilacion,
+ya que la variable solo existe dentro del lazo "for".
+
+\begin{lstlisting}[belowcaptionskip=.5em,caption={C\'odigo en lenguaje Java.}]
+	
+public class cap6{
+    public static void main(String args[]){
+        for (int i=1; i<=5; i++)
+            System.out.println(i);
+
+        // Intento acceder a la variable "i"
+        System.out.println(i);
+    }
+}
+\end{lstlisting}
+~\newline
+cap6.java:7: error: cannot find symbol System.out.println(i);
+  symbol:   variable i
+  location: class cap6
+  
+  Aqui nos dice que no se encuentra la variable i, esto se debe a que solo existe dentro del lazo "for".
+
+\begin{lstlisting}[belowcaptionskip=.5em,caption={C\'odigo en lenguaje C\#.}]
+	
+using System;
+
+namespace cap6
+{
+    class cap6
+    {
+        static void Main(string[] arg)
+        {
+            for(int i=1; i<=5; i++)
+                Console.WriteLine(i);
+
+            // Intento acceder a "i"
+            Console.WriteLine(i);
+        }
+    }
+}
+
+\end{lstlisting}
+~\newline
+cap6.cs(13,43): error CS0103: The name `i' does not exist in the current context
+~\newline
+Este mensaje nos dice que la variable "i" no existe fuera del lazo "for", ya que no es una variable global
 \clearpage
 \end{document}
