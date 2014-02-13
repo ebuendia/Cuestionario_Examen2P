@@ -1,5 +1,92 @@
-\documentclass[../main.tex]{subfiles}
-\begin{document}
+\documentclass[12pt,oneside]{article}
+\usepackage{geometry} % See geometry.pdf to learn the layout options. There are lots.
+\usepackage{listings}	% Permite utilizar lenguajes de programacion dentro de latex
+\geometry{a4paper} % ... or a4paper or a5paper or ...
+%\geometry{landscape} % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx} % Use pdf, png, jpg, or epsß with pdflatex; use eps in DVI mode
+                                                                % TeX will automatically convert eps --> pdf in pdflatex
+\usepackage{amssymb}
 
-\clearpage
+\usepackage[spanish]{babel} % Permite que partes automáticas del documento aparezcan en castellano.
+\usepackage[utf8]{inputenc} % Permite escribir tildes y otros caracteres directamente en el .tex
+\usepackage[T1]{fontenc} % Asegura que el documento resultante use caracteres de una fuente apropiada.
+
+\usepackage{hyperref} % Permite poner urls y links dentro del documento
+\usepackage{listings}
+
+\title{Ejercicios Propuestos - Concepts of Programming Languages}
+\author{}
+
+%\date{} % Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+\section{Cap\'itulo 6: Expressions and assignment statements}
+
+\subsection{pregunta 1}
+Design a set of simple test programs to determine the type compatibility rules of a C compiler to which you have access. Write a report of your findings.
+La importancia de saber manejar la compatibilidad entre los tipos de datos, es poder modificar los datos sin la necesidad de realizar una nueva asignaci\'on \\\
+\begin{lstlisting}[frame=single] % Start your code-block
+using System;
+#include <stdlib.h>
+#include <stdio.h>
+int main (int argc, char * argv[]) {
+     int w = 23;
+     long int x= 3423232,s;
+
+     s = w;
+     w = x;
+
+     printf("El valor de s es= % ld \n Y w =% d", s, w); 
+     return 0;
+} 
+
+\end{lstlisting}
+
+En este ejemplo se obtuvo como resultado que \textit{s} era igual a 23, mientras que \textit{w} obtuvo un valor totalmente diferente. Debido a que\textit{w} era un tipo de dato entero. Se origino el problema de incompatibilidad.\\
+La forma en como los tipos de compatibilidad se comportan, varian de acuerdo a ciertos casos.\\
+La mezcla entre la compilacion y como eso afectan en las operaciones. Por ejemplo en el caso del int no causa error en el hecho de haber intentando usar un tipo de dato long. Sin embargo las variables pueden usarse para anticipar una asignacion o el traspaso de parametros.\\
+
+
+\subsection{pregunta 2}
+Determine whether some C compiler to which you have access implements the free function.
+\begin{lstlisting}[frame=single]
+
+#include<stdio.h>
+
+	int main()
+	{
+		int *ptr_one;
+
+		ptr_one = (int *)malloc(sizeof(int));
+
+		if (ptr_one == 0)
+		{
+			printf("ERROR: Out of memory\n");
+			return 1;
+		}
+
+		*ptr_one = 25;
+		printf("%d\n", *ptr_one);
+
+		free(ptr_one);
+
+		return 0;
+	}
+\end{lstlisting}
+
+\subsection{\bf Pregunta 7}
+Write a C program that does a large number of references to elements of two-dimensioned arrays, using only subscripting. Write a second program that does the same operations but uses pointers and pointer arithmetic for the storage-mapping function to do the array references.Compare the time efficiency of the two programs. Which of the two programs is likely to be more reliable? Why?\\\
+
+\begin{lstlisting}[frame=single]
+#define L 100
+#define M 100
+int a[L][M]
+
+a[i] = *(a + i)
+\end{lstlisting}
+Con respecto a los tiempos de ejecucion, mas rapido es el primer caso, ya que la lectura de los datos es directamente a la memoria proporcionada por el registro a. Mientras que en el otro caso, se debe acceder primero a la memoria, buscar la direccion en la que se encuentra almacenado y ahi realizar la asignacion.
 \end{document}
+
