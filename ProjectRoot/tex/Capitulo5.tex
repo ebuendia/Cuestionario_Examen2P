@@ -136,5 +136,71 @@ namespace cap6
 cap6.cs(13,43): error CS0103: The name `i' does not exist in the current context
 ~\newline
 Este mensaje nos dice que la variable "i" no existe fuera del lazo "for", ya que no es una variable global
+
+\begin{itemize}
+	\item \textbf{Pregunta 7}
+\end{itemize}
+	Write three functions in C or C++: one that declares a large array stati-
+	cally, one that declares the same large array on the stack, and one that
+	creates the same large array from the heap. Call each of the subprograms
+	a large number of times (at least 100,000) and output the time required
+	by each. Explain the results.\newline
+
+\begin{lstlisting}[belowcaptionskip=.5em,caption={C\'odigo en lenguaje C\#.}]
+	
+#include <iostream>
+#include <stdio.h>
+#include <time.h>
+
+int stack();
+int heap();
+
+int main()
+{
+	int i;
+    clock_t time1,time2;
+
+    time1=clock();
+    for(i=0;i<100000;i++)
+		stack();
+			
+    time2=clock();
+    printf("El tiempo en el stack es: %f\n", (time2-time1)/(double) CLOCKS_PER_SEC);
+
+	time1=clock();
+    for(i=0;i<100000;i++)
+		heap();           
+    
+    time2=clock();
+    printf("El tiempo en el heap es: %f\n", (time2-time1)/(double) CLOCKS_PER_SEC);
+
+    return 0;
+}
+
+int stack(){
+	int i;
+    int M[1000];
+    for(i=0;i<1000;i++)
+    		M[i] = i;
+    return 0;
+}
+
+int heap(){
+	int *M;
+    int i;
+    M = new int[1000];
+    for(i=0;i<1000;i++)
+    		M[i] = i;
+
+    delete M;
+    return 0;
+}
+\end{lstlisting}
+Hacemos la prueba con un arreglo de 1000 elementos, tanto en el stack como en el heap y calculamos sus tiempos de ejecucion y obtenemos los siguiente resultados:
+~\newline
+El tiempo en el stack es: 0.370000\newline
+El tiempo en el heap es: 0.390000\newline
+
+Nos podemos dar cuenta que la asignacion en el stack(estatica) toma menos tiempo que la asignacion en el heap(dinamica).
 \clearpage
 \end{document}
